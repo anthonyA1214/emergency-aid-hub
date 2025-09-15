@@ -64,13 +64,10 @@ composer install
 # Install Node.js dependencies
 npm install
 
-# Compile frontend assets (Tailwind, Vite, etc.)
-npm run dev   # for development
-# or
-npm run build # for production
-
 # Copy the example environment file
 cp .env.example .env
+
+# Configure your .env file (e.g., database, app URL)
 
 # Generate application key
 php artisan key:generate
@@ -78,5 +75,5 @@ php artisan key:generate
 # Run database migrations
 php artisan migrate
 
-# Start the local development server
-php artisan serve
+# Start the development environment (PHP server, Vite, etc.)
+composer run dev
