@@ -77,3 +77,4 @@ php artisan migrate
 
 # Start the development environment (PHP server, Vite, etc.)
 composer run dev
+```
