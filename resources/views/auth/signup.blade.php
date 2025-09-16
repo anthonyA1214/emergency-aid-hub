@@ -14,7 +14,7 @@
 
         {{-- Logo --}}
         <div class="flex flex-col lg:flex-row text-center items-center gap-6">
-            <img src="{{ Vite::asset('resources/images/logo.png') }}" class="h-32 w-32"/>
+            <img src="{{asset('images/logo.png') }}" class="h-32 w-32"/>
             <h1 class="font-bold text-4xl text-red-500">Emergency Aid Hub</h1>
         </div>
 
