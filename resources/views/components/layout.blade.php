@@ -8,9 +8,9 @@
     @vite('resources/css/app.css')
 
 </head>
-<body class="min-h-screen">
-    <nav class="navbar flex-col p-0">
-        <div class="flex justify-center w-full py-3">
+<body class="min-h-screen bg-base-100">
+    <nav class="navbar flex-col p-0 fixed">
+        <div class="flex justify-center w-full py-3 bg-base-100">
             
             <div class="flex justify-between container items-center">
 
@@ -21,6 +21,7 @@
                 </div>
                 
                 <div class="flex items-center gap-x-6">
+
                     {{-- Search bar --}}
                     <div class="join">
                         <div class="input join-item">
@@ -36,8 +37,6 @@
                             </svg>     
                         </div>
                     </div>
-                    
-
     
                   {{-- 911 Call --}}  
                   <a class="flex items-center gap-x-2 text-red-500 text-lg" href="#">
@@ -50,28 +49,29 @@
     
                   {{-- User icon --}}
                   <a class="text-lg" href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                        <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
-                    </svg>       
+                    <svg class="h-[1.5em]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0zM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                    </svg>
                   </a>
                   
                 </div>
             </div>
         </div>
 
-        <div class="flex justify-center bg-base-200 shadow-xl w-full">
+        {{-- Navigation items --}}
+        <div class="flex justify-center bg-base-200 shadow-lg w-full">
             <div class="flex container justify-center w-full px-4">
-                <x-nav-item href="/" icon="icons.home-outline" iconActive="icons.home-solid" :active="request()->is('/')">Home</x-nav-item>
-                <x-nav-item href="/map" icon="icons.map-pin-outline" iconActive="icons.map-pin-solid" :active="request()->is('map')">Map</x-nav-item>
-                <x-nav-item href="/safety" icon="icons.shield-check-outline" iconActive="icons.shield-check-solid" :active="request()->is('safety')">Safety</x-nav-item>
-                <x-nav-item href="/user" icon="icons.user-outline" iconActive="icons.user-solid" :active="request()->is('user')">User</x-nav-item>
+                <x-nav-item href="/" icon="icons.house-line-regular" iconActive="icons.house-line-fill" :active="request()->is('/')">Home</x-nav-item>
+                <x-nav-item href="/map" icon="icons.map-pin-regular" iconActive="icons.map-pin-fill" :active="request()->is('map')">Map</x-nav-item>
+                <x-nav-item href="/safety" icon="icons.shield-regular" iconActive="icons.shield-fill" :active="request()->is('safety')">Safety</x-nav-item>
+                <x-nav-item href="/user" icon="icons.user-regular" iconActive="icons.user-fill" :active="request()->is('user')">User</x-nav-item>
             </div>
         </div>
         
     </nav>
 
     <main class="flex justify-center p-6">
-        <div class="container">
+        <div class="flex flex-col items-center container pt-32">
             {{ $slot }}
         </div>
     </main>
