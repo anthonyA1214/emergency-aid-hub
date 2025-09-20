@@ -18,7 +18,7 @@
             {{-- Logo --}}
             <div class="flex flex-row items-center justify-center gap-x-2 py-6">
                 <div>
-                    <img src="{{ asset('images/logo.png') }}" class="h-14 w-14"/>   
+                    <x-logo class="h-14 w-14 text-red-500" />
                 </div>
                 <div>
                     <h1 class="font-bold text-xl">Emergency Aid Hub</h1>
