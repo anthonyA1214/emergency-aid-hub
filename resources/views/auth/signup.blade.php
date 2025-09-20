@@ -13,87 +13,91 @@
     <div class="flex flex-col gap-10 justify-items-center items-center">
 
         {{-- Logo --}}
-        <div class="flex flex-col lg:flex-row text-center items-center gap-6">
-            <img src="{{asset('images/logo.png') }}" class="h-32 w-32"/>
-            <h1 class="font-bold text-4xl text-red-500">Emergency Aid Hub</h1>
+        <div class="flex flex-col lg:flex-row text-center items-center gap-6 text-red-500">
+            <x-logo class="h-32 w-32" />
+            <h1 class="font-bold text-4xl">Emergency Aid Hub</h1>
         </div>
 
         <div class="p-10 rounded-2xl lg:min-w-2xl shadow-xl text-center">
-            <form class="w-full">
+            <form class="w-full" method="POST" action="/signup">
+                @csrf
 
                 {{-- Name --}}
                 <div class="flex gap-3">
 
                     {{-- First Name --}}
-                    <div class="w-1/2">
-                        <fieldset class="fieldset">
-                            <legend class="fieldset-legend text-start">First Name</legend>
-                            <input type="text" class="input input-bordered w-full" placeholder="First Name" required />
-                        </fieldset>
-                        
-                    </div>
+                    <x-fieldset-half>
+
+                        <x-fieldset-label>First Name</x-fieldset-label>
+
+                        <x-form-input type="text" name="first_name" id="first_name" placeholder="First Name" value="{{ old('first_name') }}" />
+
+                        <x-form-error name="first_name" />
+
+                    </x-fieldset-half> 
 
                     {{-- Last Name --}}
-                    <div class="w-1/2">
-                        <fieldset class="fieldset">
-                            <legend class="fieldset-legend text-start">Last Name</legend>
-                            <input type="text" class="input input-bordered w-full" placeholder="Last Name" required />
-                        </fieldset>
-                    </div>
-                    
+                    <x-fieldset-half>
+
+                        <x-fieldset-label>Last Name</x-fieldset-label>
+
+                        <x-form-input type="text" name="last_name" id="last_name" placeholder="Last Name" value="{{ old('last_name') }}" />
+
+                        <x-form-error name="last_name" />
+
+                    </x-fieldset-half>
+      
                 </div>
 
                 {{-- Email --}}
-                <fieldset class="fieldset w-full">
-                    <legend class="fieldset-legend text-start">Email</legend>
+                <x-fieldset-full>
                     
-                    <label class="input validator w-full">
-                        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-                        </svg>
-                        
-                        <input type="email" class="w-full" placeholder="mail@site.com" required />
-                    </label>
-                    <div class="validator-hint hidden">Enter valid email address</div>
-                </fieldset>
+                    <x-fieldset-label>Email</x-fieldset-label>
+
+
+                    <x-form-input type="email" name="email" id="email" placeholder="email@example.com" value="{{ old('email') }}">
+                        <x-slot:icon>
+                            <x-icons.envelope-regular class="h-[1em] opacity-50" />
+                        </x-slot:icon>
+                    </x-form-input>
+
+                    <x-form-error name="email" />
+
+                </x-fieldset-full>
 
                 {{-- Password --}}
-                <fieldset class="fieldset w-full">
-                    <legend class="fieldset-legend text-start">Password</legend>
+                <x-fieldset-full>
 
-                    <label class="input validator w-full">
-                        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z" />
-                        </svg>
-                        
-                        <input type="password" class="w-full" placeholder="Password" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must be more than 8 characters, including number, lowercase letter, uppercase letter" required />.
+                    <x-fieldset-label>Password</x-fieldset-label>
 
-                    </label>
-                    <p class="validator-hint hidden">
-                    Must be more than 8 characters, including
-                    <br />At least one number <br />At least one lowercase letter <br />At least one uppercase letter
-                    </p>
-                </fieldset>
+                    <x-form-input type="password" name="password" id="password" placeholder="Password">
+                        <x-slot:icon>
+                            <x-icons.key-regular class="h-[1em] opacity-50" />
+                        </x-slot:icon>
+                    </x-form-input>
+
+                    <x-form-error name="password" />
+
+                </x-fieldset-full>
 
                 {{-- Confirm Password --}}
-                <fieldset class="fieldset w-full">
-                    <legend class="fieldset-legend text-start">Confirm Password</legend>
+                <x-fieldset-full>
 
-                    <label class="input validator w-full">
-                        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z" />
-                        </svg>
-                        
-                        <input type="password" class="w-full" placeholder="Password" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must be more than 8 characters, including number, lowercase letter, uppercase letter" required />.
+                    <x-fieldset-label>Confirm Password</x-fieldset-label>
 
-                    </label>
-                    <p class="validator-hint hidden">
-                    Must be more than 8 characters, including
-                    <br />At least one number <br />At least one lowercase letter <br />At least one uppercase letter
-                    </p>
-                </fieldset>
+                    <x-form-input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password">
+                        <x-slot:icon>
+                            <x-icons.key-regular class="h-[1em] opacity-50" />
+                        </x-slot:icon>
+                    </x-form-input>
 
+                    <x-form-error name="password_confirmation" />
+
+                </x-fieldset-full>
+
+                {{-- Submit --}}
                 <button class="btn w-full bg-red-500 hover:bg-red-600 text-white rounded-xl mt-6">Sign up</button>
+
             </form>
 
             <p class="mt-3">
@@ -103,5 +107,6 @@
         </div>
     </div>
 
+    @vite('resources/js/form.js')
 </body>
 </html>

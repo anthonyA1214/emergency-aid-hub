@@ -13,9 +13,9 @@
     <div class="grid lg:grid-cols-2 gap-10 justify-items-center">
         
         {{-- Logo --}}
-        <div class="flex flex-col text-center items-center gap-6">
-            <img src="{{ asset('images/logo.png') }}" class="h-32 w-32 lg:w-64 lg:h-64"/>
-            <h1 class="font-bold text-4xl text-red-500">Emergency Aid Hub</h1>
+        <div class="flex flex-col text-center items-center gap-6 text-red-500">
+            <x-logo class="h-32 w-32 lg:w-64 lg:h-64" />
+            <h1 class="font-bold text-4xl">Emergency Aid Hub</h1>
         </div>
 
         <div class="p-10 rounded-2xl lg:min-w-2xl shadow-xl text-center">
