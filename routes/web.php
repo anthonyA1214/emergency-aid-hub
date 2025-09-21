@@ -1,14 +1,15 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SignupController;
 use Illuminate\Support\Facades\Route;
 
 // Authentication routes
 // ===============================
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
+Route::get('/login', [LoginController::class, 'create']);
+Route::post('/login', [LoginController::class, 'store']);
+Route::post('/logout', [LoginController::class, 'destroy']);
 
 Route::get('/signup', [SignupController::class, 'create']);
 Route::post('/signup', [SignupController::class, 'store']);

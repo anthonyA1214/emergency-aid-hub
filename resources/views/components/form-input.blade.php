@@ -42,7 +42,7 @@
     placeholder="{{ $placeholder }}" 
     value="{{ $value }}" 
     {{ $attributes->merge([
-        'class' => 'input input-bordered w-full' . ($hasError ? ' input-error' : '')
+        'class' => 'input w-full' . ($hasError ? ' input-error' : '')
     ]) 
     }} />
 
