@@ -96,7 +96,7 @@
                 </x-fieldset-full>
 
                 {{-- Submit --}}
-                <button class="btn w-full bg-red-500 hover:bg-red-600 text-white rounded-xl mt-6">Sign up</button>
+                <x-button-fill type="submit" class="mt-6">Sign Up</x-button-fill>
 
             </form>
 

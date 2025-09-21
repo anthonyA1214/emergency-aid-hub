@@ -58,7 +58,8 @@
 
                 </x-fieldset-full>
 
-                <button class="btn w-full bg-red-500 hover:bg-red-600 text-white rounded-xl mt-6">Log in</button>
+                {{-- Submit --}}
+                <x-button-fill type="submit" class="mt-6">Log In</x-button-fill>
             </form>
 
             <p>

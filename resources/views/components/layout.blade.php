@@ -99,7 +99,7 @@
         {{-- Drawer content --}}
         <div class="drawer-side">
             <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
-            <ul class="menu bg-base-200 min-h-full w-80 p-0 rounded-tl-3xl rounded-bl-3xl">
+            <div class="menu bg-base-200 min-h-full w-80 p-0 rounded-tl-3xl rounded-bl-3xl">
                 <!-- Sidebar content here -->
                 <div class="flex items-center bg-base-300 h-16 rounded-tl-3xl border-b-1 p-6">
                     <div class="flex justify-between w-full">
@@ -157,24 +157,185 @@
                     <div class="w-full my-4 border-t border-gray-300"></div>
 
                     {{-- Buttons --}}
-                    <div class="w-full mt-auto">
-                        <a href="#" class="btn btn-outline btn-primary w-full mb-2">
-                            <x-icons.pencil-fill class="h-[1.2em]" />Edit Profile
-                        </a>
+                    <div class="w-full mt-auto flex flex-col gap-y-2">
+                        <x-button-fill onclick="edit_profile_modal.showModal()">
+                            <x-slot:icon>
+                                <x-icons.pencil-fill class="h-[1.2em]" />
+                            </x-slot:icon>
+                            Edit Profile
+                        </x-button-fill>
                         <form action="/logout" method="POST">
                             @csrf
-
-                            <button type="submit" class="btn btn-outline btn-error w-full">
-                                <x-icons.sign-out-regular class="h-[1.2em]" />Sign Out
-                            </button>
+                            
+                            <x-button-outline type="submit">
+                                <x-slot:icon>
+                                    <x-icons.sign-out-regular class="h-[1.2em]" />
+                                </x-slot:icon>
+                                Sign Out
+                            </x-button-outline>
                         </form>
                     </div>             
                     
                 </div>        
 
-            </ul>
+            </div>
         </div>
 
+        {{-- Modal --}}
+        <dialog id="edit_profile_modal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box p-0">
+                <input type="checkbox" id="upload-toggle" class="peer hidden" />
+
+                {{-- Edit Info --}}
+                <div class="peer-checked:hidden">
+                    <div class="bg-base-300 h-16 block p-6 border-b text-center">
+                        <h3 class="text-xl font-bold">Edit Profile</h3>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="text-center">
+    
+                            {{-- Avatar --}}
+                            <div class="relative avatar">
+                                <div class="w-16 rounded-full ring ring-red-500 ring-offset-2">
+                                    <img src="https://ui-avatars.com/api/?name=Anthony+Amiluddin1&background=random" />
+                                </div>
+
+                                <label for="upload-toggle" class="absolute bottom-0 right-0 bg-red-500 text-white rounded-full p-1 cursor-pointer hover:bg-red-600">
+                                    <x-icons.camera-regular class="h-[1em]" />
+                                </label>
+                            </div>
+
+                            
+                            
+                            {{-- Name --}}
+                            <div class="flex gap-3 mt-4">
+                                {{-- First Name --}}
+                                <x-fieldset-half>
+    
+                                    <x-fieldset-label>First Name</x-fieldset-label>
+                                    <x-form-input type="text" name="first_name" id="first_name" placeholder="First Name" value="Anthony" />
+                                    <x-form-error name="first_name" />
+    
+                                </x-fieldset-half> 
+    
+                                {{-- Last Name --}}
+                                <x-fieldset-half>
+    
+                                    <x-fieldset-label>Last Name</x-fieldset-label>
+                                    <x-form-input type="text" name="last_name" id="last_name" placeholder="Last Name" value="Amiluddin" />
+                                    <x-form-error name="last_name" />
+    
+                                </x-fieldset-half>
+                                
+                            </div>
+    
+                            {{-- Email --}}
+                            <x-fieldset-full>
+                                
+                                <x-fieldset-label>Email</x-fieldset-label>
+    
+                                <x-form-input type="email" name="email" id="email" placeholder="email@example.com" value="mail@domain.com">
+                                    <x-slot:icon>
+                                        <x-icons.envelope-regular class="h-[1em] opacity-50" />
+                                    </x-slot:icon>
+                                </x-form-input>
+    
+                                <x-form-error name="email" />
+    
+                            </x-fieldset-full>
+                            
+                            {{-- Phone Number --}}
+                            <x-fieldset-full>
+                                    
+                                <x-fieldset-label>Phone Number</x-fieldset-label>
+    
+                                <x-form-input type="text" name="phone_number" id="phone_number" placeholder="0912 345 6789" value="0912 345 6789">
+                                    <x-slot:icon>
+                                        <x-icons.phone-regular class="h-[1em] opacity-50" />
+                                    </x-slot:icon>
+                                </x-form-input>
+    
+                                <x-form-error name="phone_number" />
+    
+                            </x-fieldset-full>
+    
+                            {{-- Address --}}
+                            <x-fieldset-full>
+                                    
+                                <x-fieldset-label>Address</x-fieldset-label>
+    
+                                <x-form-input type="text" name="address" id="address" placeholder="Address" value="Bagong Silang Caloocan City">
+                                    <x-slot:icon>
+                                        
+                                    </x-slot:icon>
+                                </x-form-input>
+    
+                                <x-form-error name="address" />
+    
+                            </x-fieldset-full>
+                        </div>
+                        
+                        <div class="modal-action">
+                            <form method="dialog">
+                                <!-- if there is a button in form, it will close the modal -->
+                                <button class="btn">Close</button>
+                            </form>
+                        </div>
+                    </div> 
+
+                </div>
+                
+                {{-- Upload photo --}}
+                <div class="peer-checked:block hidden">
+                    <div class="bg-base-300 h-16 block p-6 border-b text-center">
+                        <h3 class="text-xl font-bold">Change Profile Photo</h3>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="text-center">
+    
+                            {{-- Avatar --}}
+                            <div class="relative avatar">
+                                <div class="w-24 rounded-full ring ring-red-500 ring-offset-2">
+                                    <img src="https://ui-avatars.com/api/?name=Anthony+Amiluddin1&background=random" />
+                                </div>
+
+                                <label for="upload-toggle" class="absolute bottom-0 right-0 bg-red-500 text-white rounded-full p-1 cursor-pointer hover:bg-red-600">
+                                    <x-icons.arrow-u-up-left-regular class="h-[1em]" />
+                                </label>
+                            </div>
+
+                            <div class="flex flex-col gap-y-2 justify-center items-center mt-4">
+                                {{-- Instructions --}}
+                                <p class="mt-4">Upload a new profile photo from your device.</p>
+
+                                {{-- File input --}}
+                                <label for="file_input" class="w-full cursor-pointer">
+                                    <div class="btn w-full bg-red-500 hover:bg-red-600 text-white rounded-xl max-w-xs">
+                                        Upload Photo
+                                    </div>
+                                </label>
+                                <input type="file" id="file_input" class="hidden" />
+
+                                {{-- Remove current photo --}}
+                                <x-button-outline class="max-w-xs">
+                                    Remove Current Photo
+                                </x-button-outline>
+                            </div>             
+                        </div>
+                        
+                        <div class="modal-action">
+                            <form method="dialog">
+                                <!-- if there is a button in form, it will close the modal -->
+                                <button class="btn">Close</button>
+                            </form>
+                        </div>
+                    </div> 
+                </div>
+
+            </div>
+        </dialog>
     </div>
 
 </body>
