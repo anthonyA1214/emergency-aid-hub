@@ -80,8 +80,8 @@
                     <div class="flex container justify-center w-full px-4">
                         <x-nav-item href="/" icon="icons.house-line-regular" iconActive="icons.house-line-fill" :active="request()->is('/')">Home</x-nav-item>
                         <x-nav-item href="/map" icon="icons.map-pin-regular" iconActive="icons.map-pin-fill" :active="request()->is('map')">Map</x-nav-item>
-                        <x-nav-item href="/safety" icon="icons.shield-regular" iconActive="icons.shield-fill" :active="request()->is('safety')">Safety</x-nav-item>
-                        <x-nav-item href="/user" icon="icons.user-regular" iconActive="icons.user-fill" :active="request()->is('user')">User</x-nav-item>
+                        <x-nav-item href="/safety" icon="icons.shield-regular" iconActive="icons.shield-fill" :active="request()->is('safety*')">Safety</x-nav-item>
+                        <x-nav-item href="/profile" icon="icons.user-regular" iconActive="icons.user-fill" :active="request()->is('profile')">Profile</x-nav-item>
                     </div>
                 </div>
                 
@@ -98,7 +98,7 @@
 
         {{-- Drawer content --}}
         <div class="drawer-side">
-            <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
+            <label for="my-drawer-w4" aria-label="close sidebar" class="drawer-overlay"></label>
             <div class="menu bg-base-200 min-h-full w-80 p-0 rounded-tl-3xl rounded-bl-3xl">
                 <!-- Sidebar content here -->
                 <div class="flex items-center bg-base-300 h-16 rounded-tl-3xl border-b-1 p-6">
